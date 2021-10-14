@@ -1,30 +1,33 @@
-node {
-    def app
-
-    stage('Clone repository') {
+pipeline {
+       def app
+    agent any
+    stages {
       
+      stage('Clone repository') {
+      steps {
+      checkout scm
+            }
+      }
 
-        checkout scm
-    }
+      stage('Build image') {
+      steps {
+      app = docker.build("tommy509/test")
+            }     
+      }
 
-    stage('Build image') {
-  
-       app = docker.build("tommy509/test")
-    }
-
-    stage('Test image') {
-  
-
-        app.inside {
+      stage('Test image') {
+      app.inside {
             sh 'echo "Tests passed"'
         }
-    }
-
-    stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
+      }
+      
+      stage('Push image') {
+      steps { 
+      docker.withRegistry('https://registry.hub.docker.com', 'git') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
+            }
         }
+      }
     }
 }
