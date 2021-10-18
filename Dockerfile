@@ -1,10 +1,9 @@
 # Stage 1
-FROM node:latest as build-step
+FROM node:14 as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
-RUN npm install -g npm@8.1.0
-RUN npm install --force 
+RUN npm install 
 COPY . /app
 RUN npm run build --prod
 # Stage 2
