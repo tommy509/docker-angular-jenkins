@@ -4,6 +4,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
 RUN npm install -g npm-check-updates
+RUN npm install 
 COPY . /app
 RUN npm run build --prod
 # Stage 2
