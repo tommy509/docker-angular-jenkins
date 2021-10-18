@@ -8,6 +8,8 @@ RUN npm install -g npm-check-updates
 
 RUN ncu -u
 
+RUN npm install -g @angular/cli@next
+
 RUN npm update && npm upgrade
 RUN npm install 
 COPY . /app
