@@ -3,10 +3,7 @@ FROM node:14.18.1-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
-RUN npm cache clean --force
-RUN npm install @angular-devkit/build-angular
-RUN ng update --all --allow-dirty --force
-RUN npm install npm@latest -g
+RUN npm install -g npm-check-updates
 COPY . /app
 RUN npm run build --prod
 # Stage 2
