@@ -3,7 +3,13 @@ FROM node:14.18.1-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
-RUN npm install
+RUN npm cache clean --force
+
+RUN npm install -g @angular/cli@latest
+
+RUN npm cache verify
+
+RUN npm install npm@latest -g
 COPY . /app
 RUN npm run build --prod
 # Stage 2
