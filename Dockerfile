@@ -3,8 +3,8 @@ FROM node:latest as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
-RUN npm uninstall @angular/compiler-cli@13.0.0-rc.0
-RUN npm install 
+
+RUN npm install --force 
 COPY . /app
 RUN npm run build --prod
 # Stage 2
