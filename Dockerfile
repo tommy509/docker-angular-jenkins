@@ -4,7 +4,7 @@ COPY / ./
 COPY package*.json ./
 
 RUN npm install -g @angular/cli@10.0.4 && \
-    npm install && \
+    npm install --force && \
     ng build
 COPY . .
 # Stage 2
