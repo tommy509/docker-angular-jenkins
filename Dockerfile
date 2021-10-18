@@ -4,9 +4,9 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
 RUN npm cache clean --force
-
-RUN npm install -g @angular/cli@latest
-RUN npm install node-sass -g
+RUN npm uninstall @angular-devkit/build-angular
+RUN npm install @angular-devkit/build-angular
+RUN ng update --all --allow-dirty --force
 COPY . /app
 RUN npm run build --prod
 # Stage 2
