@@ -8,7 +8,7 @@ RUN npm cache clean --force
 RUN npm install -g @angular/cli@latest
 
 RUN npm cache verify
-Run npm install --save-dev @angular-devkit/build-angular
+RUN npm install --save-dev @angular-devkit/build-angular
 RUN npm install npm@latest -g
 COPY . /app
 RUN npm run build --prod
