@@ -4,7 +4,6 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
 RUN npm cache clean --force
-RUN npm uninstall @angular-devkit/build-angular
 RUN npm install @angular-devkit/build-angular
 RUN ng update --all --allow-dirty --force
 RUN npm install npm@latest -g
