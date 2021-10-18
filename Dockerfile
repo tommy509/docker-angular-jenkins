@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:latest as build-step
+FROM node:14-alpine as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
@@ -7,5 +7,5 @@ RUN npm install
 COPY . /app
 RUN npm run build --prod
 # Stage 2
-FROM nginx:latest
+FROM nginx:1.17.1-alpine
 COPY --from=build-step /dist/pos /usr/share/nginx/html
