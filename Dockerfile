@@ -1,6 +1,6 @@
 # Stage 1
 FROM node:14.18.1 as build-step
-RUN npm install -g yarn
+
 
 WORKDIR /opt/ng
 
