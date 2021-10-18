@@ -7,6 +7,7 @@ COPY package.json /app
 RUN npm install -g npm-check-updates
 
 RUN ncu -u
+RUN npm update
 RUN npm install 
 COPY . /app
 RUN npm run build --prod
