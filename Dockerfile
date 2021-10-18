@@ -1,12 +1,12 @@
-# Nodejs Base image
-FROM node
+FROM node:12.7-alpine AS build
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-# install and app dependencies
-COPY package.json /app/package.json
-RUN npm install
-RUN npm install -g @angular/cli
-# add app
-COPY . /app
-# start app
-CMD ng serve --host 0.0.0.0
+COPY / ./
+COPY package*.json ./
+
+RUN npm install -g @angular/cli@10.0.4 && \
+    npm install && \
+    ng build
+COPY . .
+# Stage 2
+FROM nginx:1.20.1
+COPY --from=build-step /app/dist/app/ /usr/share/nginx/html
