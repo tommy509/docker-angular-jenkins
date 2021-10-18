@@ -6,10 +6,7 @@ COPY package.json /app
 RUN npm cache clean --force
 
 RUN npm install -g @angular/cli@latest
-
-RUN npm cache verify
-RUN npm install --save-dev @angular-devkit/build-angular
-RUN npm install npm@latest -g
+RUN npm install node-sass -g
 COPY . /app
 RUN npm run build --prod
 # Stage 2
