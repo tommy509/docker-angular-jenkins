@@ -1,10 +1,16 @@
 # Stage 1
 FROM node:12.16.2-stretch-slim as build-step
+
 RUN mkdir -p /app
+
 WORKDIR /app
+
 COPY package.json /app
+
 RUN node -v
+
 RUN npm install 
+
 COPY . /app
 RUN npm run build 
 # Stage 2
